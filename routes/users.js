@@ -42,7 +42,6 @@ router.post("/login" , (req,res) => {
     })
 })
 
-module.exports = router
 
 
 router.get("/logout" , (req,res) => {
@@ -51,3 +50,4 @@ router.get("/logout" , (req,res) => {
     })
     res.render("../views/site/login")
 })
+module.exports = router

@@ -9,6 +9,7 @@ const fileUpload = require("express-fileupload")
 const generateDate = require("./helpers/generateDate").generateDate
 const expressSession = require("express-session")
 const connectMongo = require("connect-mongo")
+const methodOverride = require("method-override")
 
 
 mongoose.connect("mongodb://127.0.0.1/geminiCrew_db", {
@@ -39,6 +40,7 @@ app.use(fileUpload())
 
 
 app.use(express.static("public"))
+app.use(methodOverride("_method"))
 
 
 app.engine("handlebars", exphbs.engine({ helpers: { generateDate: generateDate } }))
@@ -74,11 +76,13 @@ app.use("/", myMiddleware)
 const main = require("./routes/main")
 const posts = require("./routes/posts")
 const users = require("./routes/users")
+const admin = require("./routes/admin/index")
 
 
 app.use("/", main)
 app.use("/posts", posts)
 app.use("/users", users)
+app.use("/admin", admin)
 
 
 

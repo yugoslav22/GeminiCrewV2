@@ -5,8 +5,12 @@
 		<div class="container">
 			<div class="intro-text">
 				<h1 class="text-white">WELCOME TO GEMINICREW </h1>
-				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-				<button class="main-btn">Get Started!</button>
+				<p>You can access daily program and contact each other as a crew.</p>
+				{{#unless displayLink}}
+				<a href="/users/register">
+				<button class="main-btn">Register!</button> 
+				</a>
+				{{/unless}}
 			</div>
 		</div>
 	</header>
@@ -14,7 +18,7 @@
 	<!--==========================
     WHO WE ARE Section
 ============================-->
-
+{{!-- 
 <section id="about" class="md-padding">
 		<div class="container">
 			<div class="row text-center">
@@ -49,7 +53,7 @@
 			</div>
 		</div>
 	</section>
-    
+
     <section id="statement" class="md-padding">
     <div class="container">
         <div class="row">
@@ -121,3 +125,4 @@
 			</div>
 		</div>
 	</section>
+  --}}

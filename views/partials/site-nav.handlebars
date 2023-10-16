@@ -14,11 +14,18 @@
 						<a class="nav-link" href="/about">About</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/blog">Blog</a>
+						<a class="nav-link" href="/blog">Posts</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/daily">Daily</a>
+					</li>
+					
+					{{#if displayLink}}
 					<li class="nav-item">
 						<a class="nav-link" href="/admin">Admin</a>
 					</li>
+					{{/if}}
+					
 					{{#if displayLink}}
 					<li class="nav-item">
 						<a class="nav-link" href="/posts/new">Add Post</a>
