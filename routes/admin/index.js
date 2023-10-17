@@ -3,14 +3,14 @@ const router = express.Router()
 const Category = require("../../models/Category")
 const Post = require("../../models/Post")
 const Daily = require("../../models/Daily")
+const Team = require("../../models/Team")
 const path = require("path")
 
 
 
-router.get("/" , (req,res) => {
 
-    res.render("admin/index")
-})
+
+//---------------------------------
 
 
 router.get("/categories" , (req,res) => {
@@ -29,6 +29,17 @@ router.post("/categories" , (req,res) => {
         }
     })
 })
+
+
+router.delete("/categories/:id" , (req,res) => {
+
+    Category.deleteOne({_id: req.params.id}).then(()=>{
+        res.redirect("/admin/categories")
+    })
+})
+
+
+//-------------------------------------------------
 
 
 router.get("/add_daily" , (req,res) => {
@@ -59,14 +70,8 @@ router.get("/daily",(req,res)=>{
     })
 })
 
-router.delete("/categories/:id" , (req,res) => {
 
-    Category.deleteOne({_id: req.params.id}).then(()=>{
-        res.redirect("/admin/categories")
-    })
-})
-
-
+//-----------------------------------
 
 router.get("/posts" , (req,res) => {
 
@@ -78,6 +83,42 @@ router.get("/posts" , (req,res) => {
 })
 
 
+//-----------------------------------
+
+router.get("/add_team" , (req,res) => {
+
+    res.render("admin/add_team")
+})
 
 
+router.post("/team" , (req,res) => {
+    // let daily_image = req.files.daily_image
+    // daily_image.mv(path.resolve(__dirname, "../../public/img/dailyimages", daily_image.name))
+
+
+    Team.create({
+        ...req.body
+        // daily_image: `/img/dailyimages/${daily_image.name}`,
+        
+    },)
+    req.session.sessionFlash={
+        type: "alert alert-success",
+        message: "Successfully done."
+    }
+    console.log(req.body)
+    res.redirect("/admin")
+})
+
+
+router.get("/",(req,res)=>{
+    Team.find({}).lean().then(teams =>{
+        res.render("admin/index",{teams:teams})
+    })
+})
+
+
+// router.get("/" , (req,res) => {
+    
+//     res.render("admin/index")
+// })
 module.exports = router
